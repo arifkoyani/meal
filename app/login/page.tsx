@@ -33,19 +33,19 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-[#FFFFFF] text-[#000000] flex flex-col font-sans relative overflow-hidden">
       {/* Header Bar */}
-      <header className="border-b border-slate-200 bg-[#FFFFFF] py-4 px-6">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-3">
+      <header className="border-b border-slate-200 bg-[#FFFFFF] py-3.5 sm:py-4 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0">
+          <Link href="/" className="flex flex-col sm:flex-row items-center space-y-1.5 sm:space-y-0 sm:space-x-3 text-center sm:text-left">
             <img
               src="/uConnect-logo.png"
               alt="uConnect Logo"
               className="h-10 w-auto object-contain"
             />
-            <div>
+            <div className="flex items-center space-x-2">
               <span className="text-xl font-black tracking-wider text-[#000000]">
                 UCONNECT
               </span>
-              <span className="ml-2 text-xs uppercase px-2.5 py-0.5 rounded-full bg-[#E97D26]/10 text-[#E97D26] border border-[#E97D26]/30 font-bold tracking-wider">
+              <span className="text-xs uppercase px-2.5 py-0.5 rounded-full bg-[#E97D26]/10 text-[#E97D26] border border-[#E97D26]/30 font-bold tracking-wider">
                 Meals Portal
               </span>
             </div>
@@ -53,7 +53,7 @@ export default function LoginPage() {
 
           <Link
             href="/"
-            className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition border border-slate-300 flex items-center space-x-2"
+            className="w-full sm:w-auto px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition border border-slate-300 flex items-center justify-center space-x-2"
           >
             <svg
               className="w-4 h-4 text-slate-600"

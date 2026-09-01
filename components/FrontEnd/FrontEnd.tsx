@@ -316,33 +316,36 @@ export default function FrontEnd() {
 
       {/* Header Bar / Navbar */}
       <header className="border-b border-slate-200 bg-[#FFFFFF] sticky top-0 z-30 shadow-sm">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-3">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0">
+          <Link
+            href="/"
+            className="flex flex-col sm:flex-row items-center space-y-1.5 sm:space-y-0 sm:space-x-3 text-center sm:text-left"
+          >
             <img
               src="/uConnect-logo.png"
               alt="uConnect Logo"
               className="h-10 w-auto object-contain"
             />
-            <div>
-              <span className="ml-2 text-xs uppercase px-2.5 py-0.5 rounded-full bg-[#E97D26]/10 text-[#E97D26] border border-[#E97D26]/30 font-bold tracking-wider">
+            <div className="flex items-center">
+              <span className="text-xs uppercase px-2.5 py-0.5 rounded-full bg-[#E97D26]/10 text-[#E97D26] border border-[#E97D26]/30 font-bold tracking-wider">
                 Meals Portal
               </span>
             </div>
           </Link>
 
           {/* Navigation Action Buttons */}
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
             {isAuthenticated ? (
               <>
-                <div className="text-xs font-medium text-slate-700 hidden sm:flex items-center space-x-1.5 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                  <span className="font-bold text-[#000000]">
+                <div className="text-xs font-medium text-slate-700 flex items-center space-x-1.5 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200 max-w-full truncate">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0" />
+                  <span className="font-bold text-[#000000] truncate">
                     {user?.email}
                   </span>
                 </div>
                 <button
                   onClick={handleLogout}
-                  className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-rose-50 hover:text-rose-600 border border-slate-300 text-xs font-bold transition text-slate-700"
+                  className="w-full sm:w-auto px-4 py-2 rounded-xl bg-slate-100 hover:bg-rose-50 hover:text-rose-600 border border-slate-300 text-xs font-bold transition text-slate-700 text-center"
                 >
                   Sign Out
                 </button>
@@ -350,7 +353,7 @@ export default function FrontEnd() {
             ) : (
               <Link
                 href="/login"
-                className="px-4 py-2 rounded-xl bg-[#E97D26] hover:bg-[#d46c1b] text-[#FFFFFF] text-xs font-black tracking-wide shadow-md shadow-[#E97D26]/20 transition flex items-center space-x-1.5"
+                className="w-full sm:w-auto px-5 py-2 rounded-xl bg-[#E97D26] hover:bg-[#d46c1b] text-[#FFFFFF] text-xs font-black tracking-wide shadow-md shadow-[#E97D26]/20 transition flex items-center justify-center space-x-1.5"
               >
                 <span>Login</span>
               </Link>
@@ -547,23 +550,10 @@ export default function FrontEnd() {
                 onClick={handleGenerateToken}
                 className="w-full py-4 px-6 rounded-2xl bg-[#E97D26] hover:bg-[#d46c1b] text-[#FFFFFF] font-black text-base tracking-wide shadow-xl shadow-[#E97D26]/30 active:scale-[0.99] transition-all duration-300 flex items-center justify-center space-x-2"
               >
-                <svg
-                  className="w-6 h-6 text-[#FFFFFF]"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2.5}
-                    d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"
-                  />
-                </svg>
                 <span>
                   {isAuthenticated
                     ? "Generate Meal Token"
-                    : "Verify & Generate Meal Token"}
+                    : "Generate Meal Token"}
                 </span>
               </button>
             </div>
