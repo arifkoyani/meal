@@ -9,122 +9,120 @@ export interface Employee {
   id: string;
   name: string;
   dp: string;
-  password: string;
 }
 
 const RAW_EMPLOYEE_LIST = [
-  { name: "arif ali koyani", password: "arifkoyani121" },
-  { name: "shahid karim", password: "shahidkhan738" },
-  { name: "ahmed faraz", password: "ahmedfaraz128" },
-  { name: "aliyan humayoon", password: "aliyanhumayoon742" },
-  { name: "sherazahmad", password: "sherazahmad509" },
-  { name: "qamar abbas", password: "qamarabbas283" },
-  { name: "awais karim", password: "awaiskarim917" },
-  { name: "ejaz alam", password: "ejazalam482" },
-  { name: "nisar ali shah", password: "nisaralishah592" },
-  { name: "amjad ali harri", password: "amjadaliharri304" },
-  { name: "zohaib ahmed", password: "zohaibahmed748" },
-  { name: "seema mir", password: "seemamir183" },
-  { name: "ejaz karim", password: "ejazkarim402" },
-  { name: "naeem", password: "naeem682" },
-  { name: "sajid ali", password: "sajidali592" },
-  { name: "naveed danish", password: "naveeddanish203" },
-  { name: "zahid karim", password: "zahidkarim718" },
-  { name: "sahahzad ali", password: "sahahzadali492" },
-  { name: "ilyas karim", password: "ilyaskarim582" },
-  { name: "shaan m khan", password: "shaanmkhan102" },
-  { name: "zeeshan", password: "zeeshan849" },
-  { name: "anita shaheen", password: "anitashaheen392" },
-  { name: "suriya akhtar", password: "suriyaakhtar682" },
-  { name: "kamran", password: "kamran402" },
-  { name: "khalilz", password: "khalilz192" },
-  { name: "sohail ahmed", password: "sohailahmed582" },
-  { name: "afaq karim", password: "afaqkarim392" },
-  { name: "ehsanullah baig", password: "ehsanullahbaig748" },
-  { name: "nadeem akhtar", password: "nadeemakhtar293" },
-  { name: "sunail ahmed", password: "sunailahmed502" },
-  { name: "nauman akram barcha", password: "naumanakrambarcha192" },
-  { name: "naveed harri", password: "naveedharri682" },
-  { name: "pervaiz aslam", password: "pervaizaslam492" },
-  { name: "sunil", password: "sunil758" },
-  { name: "hanif khan", password: "hanifkhan293" },
-  { name: "ayaz aslam", password: "ayazaslam582" },
-  { name: "faizan karim", password: "faizankarim102" },
-  { name: "kifayat hussain", password: "kifayathussain682" },
-  { name: "somi", password: "somi492" },
-  { name: "ishaq karim (ilhan)", password: "ishaqkarimilhan738" },
-  { name: "sameer aslam", password: "sameeraslam293" },
-  { name: "shabana", password: "shabana582" },
-  { name: "hakeem sardar", password: "hakeemsardar102" },
-  { name: "marjina muskaan", password: "marjinamuskaan682" },
-  { name: "saira karim", password: "sairakarim492" },
-  { name: "sajid", password: "sajid738" },
-  { name: "ansar ali", password: "ansarali293" },
-  { name: "rashid minhas", password: "rashidminhas582" },
-  { name: "adnan ali", password: "adnanali102" },
-  { name: "asim shah", password: "asimshah682" },
-  { name: "rukhsana", password: "rukhsana492" },
-  { name: "mushtaq ali", password: "mushtaqali738" },
-  { name: "tufail alam", password: "tufailalam293" },
-  { name: "altaf hussain", password: "altafhussain582" },
-  { name: "irfan saeed", password: "irfansaeed102" },
-  { name: "zeeshan karim", password: "zeeshankarim682" },
-  { name: "asif ali", password: "asifali492" },
-  { name: "azhar ud din", password: "azharuddin738" },
-  { name: "inayat karim", password: "inayatkarim293" },
-  { name: "arsalan", password: "arsalan582" },
-  { name: "sajad ali", password: "sajadali102" },
-  { name: "ahtiram ullah", password: "ahtiramullah682" },
-  { name: "zubair akhtar", password: "zubairakhtar492" },
-  { name: "faizan ali", password: "faizanali738" },
-  { name: "sohail abbas", password: "sohailabbas293" },
-  { name: "shumaila kareem", password: "shumailakareem582" },
-  { name: "shehzad zahoor", password: "shehzadzahoor102" },
-  { name: "imtiaz karim", password: "imtiazkarim682" },
-  { name: "hassan iqbal", password: "hassaniqbal492" },
-  { name: "arslan", password: "arslan738" },
-  { name: "naseem hameed", password: "naseemhameed293" },
-  { name: "israr hussain", password: "israrhussain582" },
-  { name: "shehnaz babar", password: "shehnazbabar102" },
-  { name: "muhammad waseem", password: "muhammadwaseem682" },
-  { name: "nahida hassan", password: "nahidahassan492" },
-  { name: "taswoor hussain", password: "taswoorhussain738" },
-  { name: "sadat bakht", password: "sadatbakht293" },
-  { name: "faisal nazeem", password: "faisalnazeem582" },
-  { name: "fareed iqbal", password: "fareediqbal102" },
-  { name: "janbaz karim", password: "janbazkarim682" },
-  { name: "ali shan", password: "alishan492" },
-  { name: "sheena alam", password: "sheenaalam738" },
-  { name: "sheharyar darbar", password: "sheharyardarbar293" },
-  { name: "rehana", password: "rehana582" },
-  { name: "shehzadbaig", password: "shehzadbaig102" },
-  { name: "ghulamabbas", password: "ghulamabbas682" },
-  { name: "ambreen ali", password: "ambreenali492" },
-  { name: "sunaila murtaza", password: "sunailamurtaza738" },
-  { name: "sumera usman", password: "sumerausman293" },
-  { name: "melad ali", password: "meladali582" },
-  { name: "anaya noor", password: "anayanoor102" },
-  { name: "saqlain faraz", password: "saqlainfaraz682" },
-  { name: "umeed bano", password: "umeedbano492" },
-  { name: "noreen", password: "noreen738" },
-  { name: "rifat rumi", password: "rifatrumi293" },
-  { name: "fariha karim", password: "farihakarim582" },
-  { name: "muhammad ajmal", password: "muhammadajmal102" },
-  { name: "asif ali", password: "asifali682" },
-  { name: "shan iqbal", password: "shaniqbal492" },
-  { name: "akmal hussain", password: "akmalhussain738" },
-  { name: "daniyal karim", password: "daniyalkarim293" },
-  { name: "shahrukh arbaz", password: "shahrukharbaz582" },
-  { name: "maqsoodalikhan72", password: "maqsoodalikhan72102" },
-  { name: "sadaf khan", password: "sadafkhan682" },
-  { name: "aftab haider", password: "aftabhaider492" },
+  "arif ali koyani",
+  "shahid karim",
+  "ahmed faraz",
+  "aliyan humayoon",
+  "sherazahmad",
+  "qamar abbas",
+  "awais karim",
+  "ejaz alam",
+  "nisar ali shah",
+  "amjad ali harri",
+  "zohaib ahmed",
+  "seema mir",
+  "ejaz karim",
+  "naeem",
+  "sajid ali",
+  "naveed danish",
+  "zahid karim",
+  "sahahzad ali",
+  "ilyas karim",
+  "shaan m khan",
+  "zeeshan",
+  "anita shaheen",
+  "suriya akhtar",
+  "kamran",
+  "khalilz",
+  "sohail ahmed",
+  "afaq karim",
+  "ehsanullah baig",
+  "nadeem akhtar",
+  "sunail ahmed",
+  "nauman akram barcha",
+  "naveed harri",
+  "pervaiz aslam",
+  "sunil",
+  "hanif khan",
+  "ayaz aslam",
+  "faizan karim",
+  "kifayat hussain",
+  "somi",
+  "ishaq karim (ilhan)",
+  "sameer aslam",
+  "shabana",
+  "hakeem sardar",
+  "marjina muskaan",
+  "saira karim",
+  "sajid",
+  "ansar ali",
+  "rashid minhas",
+  "adnan ali",
+  "asim shah",
+  "rukhsana",
+  "mushtaq ali",
+  "tufail alam",
+  "altaf hussain",
+  "irfan saeed",
+  "zeeshan karim",
+  "asif ali",
+  "azhar ud din",
+  "inayat karim",
+  "arsalan",
+  "sajad ali",
+  "ahtiram ullah",
+  "zubair akhtar",
+  "faizan ali",
+  "sohail abbas",
+  "shumaila kareem",
+  "shehzad zahoor",
+  "imtiaz karim",
+  "hassan iqbal",
+  "arslan",
+  "naseem hameed",
+  "israr hussain",
+  "shehnaz babar",
+  "muhammad waseem",
+  "nahida hassan",
+  "taswoor hussain",
+  "sadat bakht",
+  "faisal nazeem",
+  "fareed iqbal",
+  "janbaz karim",
+  "ali shan",
+  "sheena alam",
+  "sheharyar darbar",
+  "rehana",
+  "shehzadbaig",
+  "ghulamabbas",
+  "ambreen ali",
+  "sunaila murtaza",
+  "sumera usman",
+  "melad ali",
+  "anaya noor",
+  "saqlain faraz",
+  "umeed bano",
+  "noreen",
+  "rifat rumi",
+  "fariha karim",
+  "muhammad ajmal",
+  "asif ali",
+  "shan iqbal",
+  "akmal hussain",
+  "daniyal karim",
+  "shahrukh arbaz",
+  "maqsoodalikhan72",
+  "sadaf khan",
+  "aftab haider",
 ];
 
-const EMPLOYEES: Employee[] = RAW_EMPLOYEE_LIST.map((user, idx) => ({
+const EMPLOYEES: Employee[] = RAW_EMPLOYEE_LIST.map((name, idx) => ({
   id: `EMP-${(idx + 1).toString().padStart(3, "0")}`,
-  name: user.name.toLowerCase(),
-  password: user.password.toLowerCase(),
-  dp: `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=E97D26&color=FFFFFF&bold=true&size=128`,
+  name: name.toLowerCase(),
+  dp: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=E97D26&color=FFFFFF&bold=true&size=128`,
 }));
 
 export interface TokenDetails {
@@ -153,9 +151,7 @@ export default function FrontEnd() {
   const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(
     null,
   );
-  const [password, setPassword] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [showPasswordMask, setShowPasswordMask] = useState(true);
 
   // Modal & Webhook status
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -177,7 +173,6 @@ export default function FrontEnd() {
     dispatch(logout());
     setSelectedEmployee(null);
     setSearchTerm("");
-    setPassword("");
   };
 
   // Filter employees based on search
@@ -187,23 +182,14 @@ export default function FrontEnd() {
     return EMPLOYEES.filter((emp) => emp.name.includes(query));
   }, [searchTerm]);
 
-  // Check if password matches selected employee's password exactly (case-insensitive)
-  const isPasswordCorrect = useMemo(() => {
-    if (!selectedEmployee) return false;
-    return (
-      password.trim().toLowerCase() === selectedEmployee.password.toLowerCase()
-    );
-  }, [selectedEmployee, password]);
-
   const handleSelectEmployee = (emp: Employee) => {
     setSelectedEmployee(emp);
     setSearchTerm(emp.name);
     setIsDropdownOpen(false);
-    setPassword(""); // reset password on change
   };
 
   const handleGenerateToken = async () => {
-    if (!selectedEmployee || !isPasswordCorrect) return;
+    if (!selectedEmployee) return;
 
     const now = new Date();
 
@@ -281,7 +267,6 @@ export default function FrontEnd() {
   const handleReset = () => {
     setSelectedEmployee(null);
     setSearchTerm("");
-    setPassword("");
     setIsDropdownOpen(false);
   };
 
@@ -420,17 +405,16 @@ export default function FrontEnd() {
             Employee Meal Token Portal
           </h1>
           <p className="text-slate-600 text-sm sm:text-base font-medium">
-            Search employee name, authenticate with password, and generate your
-            meal pass.
+            Search employee name and generate your meal pass.
           </p>
         </div>
 
         {/* Interactive Search & Verification Card */}
         <div className="w-full max-w-xl bg-[#FFFFFF] rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xl relative">
-          {/* Step 1: Employee Search Input */}
+          {/* Employee Search Input */}
           <div className="mb-6 relative">
             <label className="block text-xs font-bold text-[#000000] uppercase tracking-wider mb-2">
-              1. Search & Select Employee Name
+              Search & Select Employee Name
             </label>
             <div className="relative">
               <input
@@ -445,7 +429,6 @@ export default function FrontEnd() {
                     e.target.value.toLowerCase() !== selectedEmployee.name
                   ) {
                     setSelectedEmployee(null);
-                    setPassword("");
                   }
                 }}
                 onFocus={() => setIsDropdownOpen(true)}
@@ -541,106 +524,8 @@ export default function FrontEnd() {
             </div>
           )}
 
-          {/* Step 2: Password Input */}
+          {/* GENERATE TOKEN BUTTON */}
           {selectedEmployee && (
-            <div className="mb-6">
-              <label className="block text-xs font-bold text-[#000000] uppercase tracking-wider mb-2">
-                2. Enter Password for{" "}
-                <span className="capitalize text-[#E97D26]">
-                  {selectedEmployee.name}
-                </span>
-              </label>
-              <div className="relative">
-                <input
-                  type={showPasswordMask ? "password" : "text"}
-                  placeholder="Enter employee password..."
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className={`w-full pl-11 pr-12 py-3.5 bg-[#FFFFFF] border rounded-xl text-[#000000] placeholder-slate-400 focus:outline-none text-sm transition ${
-                    password.length > 0
-                      ? isPasswordCorrect
-                        ? "border-[#E97D26] focus:ring-2 focus:ring-[#E97D26]"
-                        : "border-rose-500 focus:ring-2 focus:ring-rose-500"
-                      : "border-slate-300 focus:ring-2 focus:ring-[#E97D26]"
-                  }`}
-                />
-                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#E97D26]">
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                    />
-                  </svg>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setShowPasswordMask(!showPasswordMask)}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#E97D26] hover:text-[#d46c1b] transition text-xs font-bold"
-                >
-                  {showPasswordMask ? "SHOW" : "HIDE"}
-                </button>
-              </div>
-
-              {/* Password Match / Error Indicator */}
-              {password.length > 0 && (
-                <div className="mt-2 text-xs flex items-center space-x-1.5">
-                  {isPasswordCorrect ? (
-                    <span className="text-[#E97D26] font-bold flex items-center space-x-1">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2.5}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      <span>
-                        Password correct! Token generator button unlocked.
-                      </span>
-                    </span>
-                  ) : (
-                    <span className="text-rose-500 font-bold flex items-center space-x-1">
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2.5}
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                      <span>
-                        Incorrect password for{" "}
-                        <span className="capitalize">
-                          {selectedEmployee.name}
-                        </span>
-                        .
-                      </span>
-                    </span>
-                  )}
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Step 3: GENERATE TOKEN BUTTON (APPEARS ONLY WHEN PASSWORD IS CORRECT) */}
-          {selectedEmployee && isPasswordCorrect && (
             <div className="pt-2">
               <button
                 type="button"
@@ -667,8 +552,7 @@ export default function FrontEnd() {
 
           {!selectedEmployee && (
             <div className="p-6 text-center border-2 border-dashed border-slate-200 rounded-2xl text-slate-500 text-sm font-medium">
-              Please search and select an employee above to proceed with
-              authentication.
+              Please search and select an employee above to proceed.
             </div>
           )}
         </div>
