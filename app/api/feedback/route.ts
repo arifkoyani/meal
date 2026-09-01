@@ -3,11 +3,11 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, date, time, timestamp, token, tokenId } = body;
+    const { feedback, timestamp } = body;
 
-    if (!name || !date || !time) {
+    if (!feedback) {
       return NextResponse.json(
-        { success: false, error: "Missing required fields: name, date, and time are required." },
+        { success: false, error: "Missing required field: feedback is required." },
         { status: 400 }
       );
     }
@@ -15,16 +15,12 @@ export async function POST(request: Request) {
     const webhookUrl = "https://automation.uconnect.work/webhook/fe38bfbf-c71e-4270-a279-6b771c2d18ac";
 
     const webhookPayload = {
-      mode: "token",
-      name,
-      token: token || tokenId || "",
-      tokenId: tokenId || token || "",
-      date,
-      time,
+      mode: "feedback",
+      feedback,
       timestamp: timestamp || new Date().toISOString(),
     };
 
-    // Forward data to the webhook via POST method
+    // Forward feedback data to the webhook via POST method
     const webhookResponse = await fetch(webhookUrl, {
       method: "POST",
       headers: {
@@ -35,7 +31,7 @@ export async function POST(request: Request) {
 
     if (!webhookResponse.ok) {
       const responseText = await webhookResponse.text().catch(() => "");
-      console.error("Webhook post failed:", webhookResponse.status, responseText);
+      console.error("Feedback webhook post failed:", webhookResponse.status, responseText);
       return NextResponse.json(
         {
           success: false,
@@ -48,12 +44,12 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
-      message: "Token data sent to webhook successfully",
+      message: "Feedback data sent to webhook successfully",
       data: webhookPayload,
     });
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : "Internal server error";
-    console.error("API Route Error:", errorMessage);
+    console.error("Feedback API Route Error:", errorMessage);
     return NextResponse.json(
       { success: false, error: errorMessage },
       { status: 500 }
