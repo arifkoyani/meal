@@ -324,9 +324,6 @@ export default function FrontEnd() {
               className="h-10 w-auto object-contain"
             />
             <div>
-              <span className="text-xl font-black tracking-wider text-[#000000]">
-                UCONNECT
-              </span>
               <span className="ml-2 text-xs uppercase px-2.5 py-0.5 rounded-full bg-[#E97D26]/10 text-[#E97D26] border border-[#E97D26]/30 font-bold tracking-wider">
                 Meals Portal
               </span>
