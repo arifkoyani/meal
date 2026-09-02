@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
 import { RootState, AppDispatch } from "@/lib/redux/store";
@@ -151,6 +151,22 @@ export default function FrontEnd() {
     null,
   );
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   // Unauthenticated Password Verification State
   const [empPassword, setEmpPassword] = useState("");
@@ -377,7 +393,7 @@ export default function FrontEnd() {
         {/* Interactive Search & Verification Card */}
         <div className="w-full max-w-xl bg-[#FFFFFF] rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xl relative mb-4">
           {/* Employee Search Input */}
-          <div className="mb-6 relative">
+          <div ref={searchRef} className="mb-6 relative">
             <label className="block text-xs font-bold text-[#000000] uppercase tracking-wider mb-2">
               Search & Select Employee Name
             </label>
