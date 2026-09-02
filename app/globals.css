@@ -1,4 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-poppins), 'Poppins', system-ui, sans-serif;
+}
 
 :root {
   --background: #FFFFFF;
@@ -6,8 +11,12 @@
   --accent-orange: #E97D26;
 }
 
+* {
+  font-family: var(--font-poppins), 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
 body {
   background: #FFFFFF;
   color: #000000;
-  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-poppins), 'Poppins', system-ui, -apple-system, sans-serif;
 }
