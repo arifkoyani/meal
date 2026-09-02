@@ -560,9 +560,6 @@ export default function FrontEnd() {
                     <h3 className="text-sm font-black text-[#000000] truncate">
                       Feedback (Anonymously)
                     </h3>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#E97D26] bg-[#E97D26]/10 px-2 py-0.5 rounded-full border border-[#E97D26]/20 flex-shrink-0">
-                      100% Private
-                    </span>
                   </div>
                   <p className="text-xs text-slate-500 font-medium mt-0.5 truncate">
                     How can we make this service better?
