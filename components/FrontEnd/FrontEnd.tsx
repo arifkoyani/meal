@@ -552,8 +552,8 @@ export default function FrontEnd() {
             <div className="mb-6 p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center space-x-2">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
               <span>
-                Logged in as Admin ({user?.email}) — Direct Token Generation (No
-                Employee Password Required)
+                Logged in as Admin ({user?.email}). No Employee Password
+                Required
               </span>
             </div>
           )}
