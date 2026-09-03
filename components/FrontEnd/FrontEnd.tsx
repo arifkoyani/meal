@@ -173,11 +173,6 @@ export default function FrontEnd() {
   const [empPassword, setEmpPassword] = useState("");
   const [passwordError, setPasswordError] = useState<string | null>(null);
 
-  // Anonymous Feedback State (just above search card)
-  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
-  const [feedbackText, setFeedbackText] = useState("");
-  const [feedbackSuccess, setFeedbackSuccess] = useState(false);
-
   // Modal & Webhook status
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [tokenDetails, setTokenDetails] = useState<TokenDetails | null>(null);
@@ -338,220 +333,51 @@ export default function FrontEnd() {
 
   return (
     <div className="min-h-screen bg-[#FFFFFF] text-[#000000] flex flex-col font-sans selection:bg-[#E97D26] selection:text-[#FFFFFF] relative overflow-hidden">
-      {/* Background Glow Overlay */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#E97D26]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 -right-40 w-96 h-96 bg-[#E97D26]/10 rounded-full blur-3xl pointer-events-none" />
-
       {/* Header Bar / Navbar */}
       <Navbar onLogout={handleLogout} />
 
-      {/* Main Content Area */}
-      <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-10 flex flex-col justify-center items-center z-10">
-        {/* Banner Title */}
-        <div className="text-center mb-8 max-w-2xl">
-          <h1 className="text-3xl sm:text-4xl font-black text-[#000000] tracking-tight mb-2">
-            Employee Meal Token Portal
-          </h1>
-        </div>
+      {/* Hero Section with background image */}
+      <section className=" relative h-[100vh] w-full bg-[url('/background.jpg')] bg-cover bg-center py-12 sm:py-16 px-4 sm:px-6 flex flex-col justify-center items-center">
+        {/* Background Overlay */}
+        <div className="absolute inset-0 bg-slate-900/50 backdrop-blur-[1px] pointer-events-none" />
 
-        {/* Interactive Search & Verification Card */}
-        <div className="w-full max-w-xl bg-[#FFFFFF] rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-xl relative mb-4">
-          {/* Employee Search Input */}
-          <div ref={searchRef} className="mb-6 relative">
-            <label className="block text-xs font-bold text-[#000000] uppercase tracking-wider mb-2">
-              Search & Select Employee Name
-            </label>
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Type employee name..."
-                value={searchTerm}
-                onChange={(e) => {
-                  setSearchTerm(e.target.value);
-                  setIsDropdownOpen(true);
-                  if (
-                    selectedEmployee &&
-                    e.target.value.toLowerCase() !== selectedEmployee.name
-                  ) {
-                    setSelectedEmployee(null);
-                    setEmpPassword("");
-                    setPasswordError(null);
-                  }
-                }}
-                onFocus={() => setIsDropdownOpen(true)}
-                className="w-full pl-11 pr-10 py-3.5 bg-[#FFFFFF] border border-slate-300 rounded-xl text-[#000000] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#E97D26] focus:border-[#E97D26] text-sm transition"
-              />
-              <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#E97D26]">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </div>
-
-              {selectedEmployee && (
-                <button
-                  type="button"
-                  onClick={handleReset}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100 transition"
-                  title="Clear Selection"
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              )}
-            </div>
-
-            {/* Dropdown Suggestions */}
-            {isDropdownOpen && filteredEmployees.length > 0 && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-[#FFFFFF] border border-slate-200 rounded-xl shadow-2xl max-h-60 overflow-y-auto z-20 divide-y divide-slate-100">
-                {filteredEmployees.map((emp) => (
-                  <div
-                    key={emp.id}
-                    onClick={() => handleSelectEmployee(emp)}
-                    className="p-3 hover:bg-[#FFF7ED] cursor-pointer transition flex items-center space-x-3"
-                  >
-                    <img
-                      src={emp.dp}
-                      alt={emp.name}
-                      className="w-10 h-10 rounded-full object-cover border border-[#E97D26]"
-                    />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-bold text-[#E97D26] capitalize truncate">
-                        {emp.name}
-                      </p>
-                      <p className="text-xs text-slate-500 truncate">
-                        {emp.id}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+        {/* Hero Content Wrapper */}
+        <div className="relative z-10 max-w-4xl w-full mx-auto flex flex-col items-center">
+          {/* Banner Title */}
+          <div className="text-center mb-8 max-w-2xl">
+            <h1 className="text-3xl sm:text-4xl font-black text-[#FFFFFF] tracking-tight mb-0 drop-shadow-md">
+              Employee Meal Token Portal
+            </h1>
           </div>
 
-          {/* Selected Employee Display Card */}
-          {selectedEmployee && (
-            <div className="mb-6 p-4 rounded-2xl bg-[#FFF7ED] border border-[#E97D26]/40 flex items-center space-x-4">
-              <img
-                src={selectedEmployee.dp}
-                alt={selectedEmployee.name}
-                className="w-14 h-14 rounded-2xl object-cover border-2 border-[#E97D26] shadow-sm"
-              />
-              <div className="flex-1 min-w-0">
-                <h3 className="text-base font-black text-[#E97D26] capitalize truncate">
-                  {selectedEmployee.name}
-                </h3>
-                <p className="text-xs text-slate-600 font-medium">
-                  Uconnect Employee ({selectedEmployee.id})
-                </p>
-              </div>
-              <span className="px-3 py-1 text-[11px] font-bold text-[#FFFFFF] bg-[#E97D26] rounded-full shadow-sm">
-                Selected
-              </span>
-            </div>
-          )}
-
-          {/* PASSWORD STEP (Only for Unauthenticated Mode) */}
-          {selectedEmployee && !isAuthenticated && (
-            <div className="mb-6 p-4.5 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3">
-              <div className="flex items-center justify-between">
-                <label className="block text-xs font-bold text-[#000000] uppercase tracking-wider">
-                  Enter Password
-                </label>
-              </div>
-              <input
-                type="password"
-                placeholder="Enter password..."
-                value={empPassword}
-                onChange={(e) => {
-                  setEmpPassword(e.target.value);
-                  if (passwordError) setPasswordError(null);
-                }}
-                className="w-full px-4 py-3 bg-[#FFFFFF] border border-slate-300 rounded-xl text-[#000000] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#E97D26] text-sm font-medium"
-              />
-
-              {passwordError && (
-                <div className="p-3 rounded-xl bg-rose-50 border border-rose-300 text-rose-700 text-xs font-bold flex items-center space-x-2">
-                  <svg
-                    className="w-4 h-4 flex-shrink-0 text-rose-600"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  <span>{passwordError}</span>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* ADMIN LOGGED IN BADGE (Skip Password Step) */}
-          {selectedEmployee && isAuthenticated && (
-            <div className="mb-6 p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center space-x-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
-              <span>
-                Logged in as Admin ({user?.email}). No Employee Password
-                Required
-              </span>
-            </div>
-          )}
-
-          {/* GENERATE TOKEN BUTTON */}
-          {selectedEmployee && (
-            <div className="pt-2">
-              <button
-                type="button"
-                onClick={handleGenerateToken}
-                className="w-full py-4 px-6 rounded-2xl bg-[#E97D26] hover:bg-[#d46c1b] text-[#FFFFFF] font-black text-base tracking-wide shadow-xl shadow-[#E97D26]/30 active:scale-[0.99] transition-all duration-300 flex items-center justify-center space-x-2"
-              >
-                <span>
-                  {isAuthenticated
-                    ? "Generate Meal Token"
-                    : "Generate Meal Token"}
-                </span>
-              </button>
-            </div>
-          )}
-
-          {!selectedEmployee && (
-            <div className="p-6 text-center border-2 border-dashed border-slate-200 rounded-2xl text-slate-500 text-sm font-medium">
-              Please search and select an employee above to proceed.
-            </div>
-          )}
-        </div>
-
-        {/* ANONYMOUS FEEDBACK SECTION */}
-        <div className="w-full max-w-xl mb-6">
-          <div className="bg-[#FFFFFF] border border-slate-200 rounded-2xl p-4 shadow-sm relative overflow-hidden transition-all duration-300">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-3 min-w-0">
-                <div className="w-10 h-10 rounded-xl bg-[#E97D26]/10 text-[#E97D26] flex items-center justify-center flex-shrink-0 font-bold">
+          {/* Interactive Search & Verification Card */}
+          <div className="w-full max-w-xl bg-transparent rounded-3xl  p-6 sm:p-8 shadow-2xl relative mb-4">
+            {/* Employee Search Input */}
+            <div ref={searchRef} className="mb-6 relative">
+              <label className="block text-xs font-bold text-white uppercase tracking-wider mb-2">
+                Search & Select Employee Name
+              </label>
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Type employee name..."
+                  value={searchTerm}
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                    setIsDropdownOpen(true);
+                    if (
+                      selectedEmployee &&
+                      e.target.value.toLowerCase() !== selectedEmployee.name
+                    ) {
+                      setSelectedEmployee(null);
+                      setEmpPassword("");
+                      setPasswordError(null);
+                    }
+                  }}
+                  onFocus={() => setIsDropdownOpen(true)}
+                  className="w-full pl-11 pr-10 py-3.5 bg-[#FFFFFF] border border-slate-300 rounded-xl text-[#000000] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#E97D26] focus:border-[#E97D26] text-sm transition"
+                />
+                <div className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#E97D26]">
                   <svg
                     className="w-5 h-5"
                     fill="none"
@@ -562,148 +388,164 @@ export default function FrontEnd() {
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     />
                   </svg>
                 </div>
-                <div className="min-w-0">
-                  <div className="flex items-center space-x-2">
-                    <h3 className="text-sm font-black text-[#000000] truncate">
-                      Feedback (Anonymously)
-                    </h3>
-                  </div>
-                  <p className="text-xs text-slate-500 font-medium mt-0.5 truncate">
-                    How can we make this service better?
-                  </p>
-                </div>
+
+                {selectedEmployee && (
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100 transition"
+                    title="Clear Selection"
+                  >
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                )}
               </div>
 
-              <button
-                type="button"
-                onClick={() => {
-                  setIsFeedbackOpen(!isFeedbackOpen);
-                  setFeedbackSuccess(false);
-                }}
-                className="px-3.5 py-2 rounded-xl bg-[#E97D26] hover:bg-[#d46c1b] text-white text-xs font-bold transition shadow-sm flex items-center space-x-1.5 flex-shrink-0 ml-3"
-              >
-                <span>{isFeedbackOpen ? "Close" : "Give Feedback"}</span>
-                <svg
-                  className={`w-4 h-4 transition-transform duration-200 ${
-                    isFeedbackOpen ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
+              {/* Dropdown Suggestions */}
+              {isDropdownOpen && filteredEmployees.length > 0 && (
+                <div className="absolute top-full left-0 right-0 mt-2 bg-[#FFFFFF]  rounded-xl shadow-2xl max-h-60 overflow-y-auto z-20 divide-y divide-slate-100 bg-white/10 backdrop-blur-sm">
+                  {filteredEmployees.map((emp) => (
+                    <div
+                      key={emp.id}
+                      onClick={() => handleSelectEmployee(emp)}
+                      className="p-3 hover:bg-[#FFF7ED]/40 cursor-pointer transition flex items-center space-x-3"
+                    >
+                      <img
+                        src={emp.dp}
+                        alt={emp.name}
+                        className="w-10 h-10 rounded-full object-cover border border-[#E97D26]"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-bold text-[#E97D26] capitalize truncate">
+                          {emp.name}
+                        </p>
+                        <p className="text-xs text-slate-500 truncate">
+                          {emp.id}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
-            {/* EXPANDABLE FEEDBACK FORM */}
-            {isFeedbackOpen && (
-              <div className="mt-4 pt-4 border-t border-slate-100">
-                {feedbackSuccess ? (
-                  <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold flex items-center justify-between">
-                    <div className="flex items-center space-x-2">
-                      <svg
-                        className="w-4 h-4 text-emerald-600 flex-shrink-0"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2.5}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      <span>
-                        Thank you! Your feedback has been sent anonymously.
-                      </span>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setIsFeedbackOpen(false)}
-                      className="text-emerald-700 hover:text-emerald-900 underline text-[11px] ml-2"
+            {/* Selected Employee Display Card */}
+            {selectedEmployee && (
+              <div className="mb-6 p-4 rounded-2xl bg-[#FFF7ED] border border-[#E97D26]/40 flex items-center space-x-4">
+                <img
+                  src={selectedEmployee.dp}
+                  alt={selectedEmployee.name}
+                  className="w-14 h-14 rounded-2xl object-cover border-2 border-[#E97D26] shadow-sm"
+                />
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-base font-black text-[#E97D26] capitalize truncate">
+                    {selectedEmployee.name}
+                  </h3>
+                  <p className="text-xs text-slate-600 font-medium">
+                    Uconnect Employee ({selectedEmployee.id})
+                  </p>
+                </div>
+                <span className="px-3 py-1 text-[11px] font-bold text-[#FFFFFF] bg-[#E97D26] rounded-full shadow-sm">
+                  Selected
+                </span>
+              </div>
+            )}
+
+            {/* PASSWORD STEP (Only for Unauthenticated Mode) */}
+            {selectedEmployee && !isAuthenticated && (
+              <div className="mb-6 p-4.5 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3">
+                <div className="flex items-center justify-between">
+                  <label className="block text-xs font-bold text-[#000000] uppercase tracking-wider">
+                    Enter Password
+                  </label>
+                </div>
+                <input
+                  type="password"
+                  placeholder="Enter password..."
+                  value={empPassword}
+                  onChange={(e) => {
+                    setEmpPassword(e.target.value);
+                    if (passwordError) setPasswordError(null);
+                  }}
+                  className="w-full px-4 py-3 bg-[#FFFFFF] border border-slate-300 rounded-xl text-[#000000] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#E97D26] text-sm font-medium"
+                />
+
+                {passwordError && (
+                  <div className="p-3 rounded-xl bg-rose-50 border border-rose-300 text-rose-700 text-xs font-bold flex items-center space-x-2">
+                    <svg
+                      className="w-4 h-4 flex-shrink-0 text-rose-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
                     >
-                      Dismiss
-                    </button>
-                  </div>
-                ) : (
-                  <form
-                    onSubmit={async (e) => {
-                      e.preventDefault();
-                      if (!feedbackText.trim()) return;
-                      try {
-                        await fetch("/api/feedback", {
-                          method: "POST",
-                          headers: {
-                            "Content-Type": "application/json",
-                          },
-                          body: JSON.stringify({
-                            feedback: feedbackText.trim(),
-                            timestamp: new Date().toISOString(),
-                          }),
-                        });
-                      } catch (err) {
-                        console.error("Feedback submission error:", err);
-                      }
-                      setFeedbackSuccess(true);
-                      setFeedbackText("");
-                    }}
-                    className="space-y-3"
-                  >
-                    <div>
-                      <label className="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                        How can we make this service better?
-                      </label>
-                      <textarea
-                        required
-                        rows={3}
-                        value={feedbackText}
-                        onChange={(e) => setFeedbackText(e.target.value)}
-                        placeholder="Type your feedback or suggestions here anonymously..."
-                        className="w-full px-3.5 py-2.5 bg-[#FFFFFF] border border-slate-300 rounded-xl text-[#000000] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#E97D26] text-xs resize-none font-medium"
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                       />
-                    </div>
-                    <div className="flex justify-end">
-                      <button
-                        type="submit"
-                        className="py-2.5 px-5 rounded-xl bg-[#E97D26] hover:bg-[#d46c1b] text-[#FFFFFF] font-black text-xs tracking-wide shadow-md shadow-[#E97D26]/20 transition flex items-center space-x-1.5"
-                      >
-                        <svg
-                          className="w-3.5 h-3.5"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                          />
-                        </svg>
-                        <span>Send Feedback</span>
-                      </button>
-                    </div>
-                  </form>
+                    </svg>
+                    <span>{passwordError}</span>
+                  </div>
                 )}
+              </div>
+            )}
+
+            {/* ADMIN LOGGED IN BADGE (Skip Password Step) */}
+            {selectedEmployee && isAuthenticated && (
+              <div className="mb-6 p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center space-x-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
+                <span>
+                  Logged in as Admin ({user?.email}). No Employee Password
+                  Required
+                </span>
+              </div>
+            )}
+
+            {/* GENERATE TOKEN BUTTON */}
+            {selectedEmployee && (
+              <div className="pt-2">
+                <button
+                  type="button"
+                  onClick={handleGenerateToken}
+                  className="w-full py-4 px-6 rounded-2xl bg-[#E97D26] hover:bg-[#d46c1b] text-[#FFFFFF] font-black text-base tracking-wide shadow-xl shadow-[#E97D26]/30 active:scale-[0.99] transition-all duration-300 flex items-center justify-center space-x-2"
+                >
+                  <span>
+                    {isAuthenticated
+                      ? "Generate Meal Token"
+                      : "Generate Meal Token"}
+                  </span>
+                </button>
               </div>
             )}
           </div>
         </div>
+      </section>
 
-        {/* MEAL & MESS SOPS SECTION (Only for Unauthenticated / Non-logged in Users) */}
-        {!isAuthenticated && <Sops />}
-      </main>
+      {/* MEAL & MESS SOPS SECTION (Only for Unauthenticated / Non-logged in Users) */}
+      {!isAuthenticated && (
+        <section className="w-full py-12 px-4 sm:px-6 bg-slate-50 border-t border-slate-200">
+          <div className="max-w-6xl lg:max-w-7xl mx-auto">
+            <Sops />
+          </div>
+        </section>
+      )}
 
       {/* GENERATE TOKEN MODAL WINDOW */}
       {isModalOpen && tokenDetails && (

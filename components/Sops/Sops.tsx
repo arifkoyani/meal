@@ -1,8 +1,15 @@
 "use client";
 
+import Feedback from "../feedback/feedback";
+
 export default function Sops() {
   return (
     <div className="w-full  max-w-6xl  lg:max-w-7xl mx-auto  mb-8">
+      {/* ANONYMOUS FEEDBACK SECTION */}
+      <div className="flex justify-center w-full">
+        <Feedback />
+      </div>
+
       {/* Main Section Header with Styled Background */}
       <div className="bg-[#FFF7ED] border border-[#E97D26]/30 rounded-2xl p-4 sm:p-5 mb-4 shadow-sm">
         <div className="flex items-center justify-center space-x-3 text-center">
