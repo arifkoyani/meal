@@ -25,10 +25,10 @@ export default function Navbar({ onLogout }: NavbarProps) {
 
   return (
     <header className="border-b border-slate-200 bg-[#FFFFFF] sticky top-0 z-30 shadow-sm">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-0">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6">
         <Link
           href="/"
-          className="flex flex-col sm:flex-row items-center space-y-1.5 sm:space-y-0 sm:space-x-3 text-center sm:text-left"
+          className="flex items-center justify-center space-x-3 text-center"
         >
           <img
             src="/uConnect-logo.png"
@@ -60,12 +60,16 @@ export default function Navbar({ onLogout }: NavbarProps) {
               </button>
             </>
           ) : (
+            /* Commented out Login button */
+            /*
             <Link
               href="/login"
               className="w-full sm:w-auto px-5 py-2 rounded-xl bg-[#E97D26] hover:bg-[#d46c1b] text-[#FFFFFF] text-xs font-black tracking-wide shadow-md shadow-[#E97D26]/20 transition flex items-center justify-center space-x-1.5"
             >
               <span>Login</span>
             </Link>
+            */
+            null
           )}
         </div>
       </div>

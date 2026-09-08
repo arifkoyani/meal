@@ -240,6 +240,7 @@ export default function FrontEnd() {
     if (!selectedEmployee) return;
 
     // IF NOT AUTHENTICATED: Validate employee password
+    /*
     if (!isAuthenticated) {
       const isValid = validateEmployeePassword(selectedEmployee, empPassword);
       if (!isValid) {
@@ -247,6 +248,7 @@ export default function FrontEnd() {
         return; // DO NOT generate token!
       }
     }
+    */
 
     // Password is valid (or user is logged in): clear error and proceed
     setPasswordError(null);
@@ -467,7 +469,8 @@ export default function FrontEnd() {
               </div>
             )}
 
-            {/* PASSWORD STEP (Only for Unauthenticated Mode) */}
+            {/* PASSWORD STEP (Only for Unauthenticated Mode) - Commented out */}
+            {/*
             {selectedEmployee && !isAuthenticated && (
               <div className="mb-6 p-4.5 rounded-2xl bg-[#F8FAFC] border border-slate-200 space-y-3">
                 <div className="flex items-center justify-between">
@@ -506,6 +509,7 @@ export default function FrontEnd() {
                 )}
               </div>
             )}
+            */}
 
             {/* ADMIN LOGGED IN BADGE (Skip Password Step) */}
             {selectedEmployee && isAuthenticated && (
